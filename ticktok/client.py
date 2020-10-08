@@ -1,3 +1,8 @@
-class Ticktok(object):
-    def say_hello(self):
-        return 'Hello World'
+class ClockRegisterError(Exception):
+    pass
+
+
+class Ticktok:
+
+    def schedule(self, name, schedule):
+        raise ClockRegisterError()

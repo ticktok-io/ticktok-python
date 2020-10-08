@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  ticktok:
+    image: ticktok/ticktok:0.2.7
+    ports:
+      - 9643:9643
+
+
