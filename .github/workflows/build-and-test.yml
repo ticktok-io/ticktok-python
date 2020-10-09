@@ -23,6 +23,8 @@ jobs:
         poetry install
     - name: Lint with flake8
       run: invoke lint
+    - name: Run ticktok.io
+      run: docker-compose up -d
     - name: Test with pytest
       run: |
         invoke test
