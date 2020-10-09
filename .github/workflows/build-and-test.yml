@@ -22,8 +22,7 @@ jobs:
       run: |
         poetry install
     - name: Lint with flake8
-      run: |
-        invoke lint
+      run: invoke lint
     - name: Test with pytest
       run: |
         invoke test
