@@ -4,5 +4,5 @@ class ClockRegisterError(Exception):
 
 class Ticktok:
 
-    def schedule(self, name, schedule):
+    def register(self, name, schedule, callback):
         raise ClockRegisterError()
