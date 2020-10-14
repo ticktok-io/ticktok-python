@@ -14,6 +14,7 @@ Scheduling of a simple clock
 ticktok = Ticktok(url, token)
 ticktok.register(name='email:birthdays', schedule='every.30.seconds', send_bd_emails())
 ```
+Scheduling using decorators
 ```python
 ticktok = Ticktok(url, token)
 
@@ -29,9 +30,10 @@ ticktok.unregister(name='email:birthdays', schedule='every.30.seconds', callback
 ```
 Invoke an action on an existing clock. These are global operation and might affect other clients as well 
 ```python
-ticktok.clock(name='event:start', schedule='every.5.minutes').tick()
-ticktok.clock(name='event:provision', schedule='every.5.minutes').pause()
-ticktok.clock(name='event:provision', schedule='every.5.minutes').resume()
+clock = ticktok.clock(name='event:start', schedule='every.5.minutes')
+clock.tick()
+clock.pause()
+clock.resume()
 ```
 
 
