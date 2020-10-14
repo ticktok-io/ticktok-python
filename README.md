@@ -9,33 +9,31 @@ pip install ticktok
 ```
 
 ### Usage
+Scheduling of a simple clock
 ```python
-    ticktok = ticktok.client(url, token)
-    
-
-
-    @ticktok.listen(name='sdf', schedule='sdfsdf')
-    def send_email_if_needed():
-        pass
-    ````
-
-    ticktok.tick(clock(name='email:bd', schedule='every.1.days'))
-    clock = ticktok.clock(name='email:bd', schedule='every.1.days').register(on_tick=lambda: send_email_if_needed())
-    clock.unregister()
-    
-    ticktok.clock(name='sdfs', schedule='asdas').tick()
-    ticktok.clock(name='sdfs', schedule='asdas').pause()
-    ticktok.clock(name='sdfs', schedule='asdas').resume()
-
-    ticktok.tag('event').create(at=date())
-    ticktok.tag('event').delete()
-    ticktok.tag('event').tick()
-
-
-    ticktok = ticktok.client()
-
-    ticktok.tick()
-
+ticktok = Ticktok(url, token)
+ticktok.register(name='email:birthdays', schedule='every.30.seconds', send_emails_for_upcoming_birthdays())
 ```
+```python
+ticktok = Ticktok(url, token)
+
+@ticktok.listen_on(name='email:birthdays', schedule='every.30.seconds')
+def send_emails_for_upcoming_birthdays():
+    pass
+```
+Unregistering of callbacks
+```python
+ticktok.unregister_all() # all callbacks
+ticktok.unregister(name='email:birthdays', schedule='every.30.seconds') # all callbacks for clock
+ticktok.unregister(name='email:birthdays', schedule='every.30.seconds', callback=send_emails_for_upcoming_birthdays()) # specific callback
+```
+Invoke an action on an existing clock. These are global operation and might affect other clients as well 
+```python
+ticktok.clock(name='event:provision_renderers', schedule='every.5.minutes').tick()
+ticktok.clock(name='event:provision_renderers', schedule='every.5.minutes').pause()
+ticktok.clock(name='event:provision_renderers', schedule='every.5.minutes').resume()
+```
+
+
 
 
