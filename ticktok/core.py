@@ -47,7 +47,6 @@ class TicktokClient:
                 if response.json():
                     self._callback()
 
-
     def unregister_all(self):
         self._is_running = False
         self._callback = None
