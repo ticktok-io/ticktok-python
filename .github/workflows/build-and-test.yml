@@ -27,7 +27,7 @@ jobs:
       timeout-minutes: 2
       run: |
         docker-compose up -d
-        sh .github/workflows/ticktok_health_check.sh
+        bash .github/workflows/ticktok_health_check.sh
     - name: Test with pytest
       run: |
         invoke test
