@@ -10,4 +10,4 @@ check_health() {
     echo $1 is healthy!
 }
 
-check_health https://localhost:9643
+timeout 10 check_health http://localhost:9643
