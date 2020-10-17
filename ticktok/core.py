@@ -23,7 +23,7 @@ class TicktokClient:
         self._poll_url = None
         self._callback = None
         self._lock = threading.Lock()
-        self._http_session = create_retry_session()
+        self._http_session = requests.session()  # create_retry_session()
 
     def register(self, name, schedule, callback):
         try:
