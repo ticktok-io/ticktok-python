@@ -4,8 +4,6 @@ from threading import Thread
 import requests
 from requests import HTTPError, ConnectionError
 
-from ticktok.http_session import create_retry_session
-
 DEFAULT_DOMAIN = 'http://localhost:9643'
 DEFAULT_TOKEN = 'ticktok-zY3wpR'
 
