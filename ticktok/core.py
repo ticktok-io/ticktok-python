@@ -4,6 +4,8 @@ from threading import Thread
 import requests
 from requests import HTTPError, ConnectionError
 
+from ticktok.http_session import create_retry_session
+
 DEFAULT_DOMAIN = 'http://localhost:9643'
 DEFAULT_TOKEN = 'ticktok-zY3wpR'
 
@@ -21,7 +23,7 @@ class TicktokClient:
         self._poll_url = None
         self._callback = None
         self._lock = threading.Lock()
-        self._http_session = requests.session()  # create_retry_session()
+        self._http_session = create_retry_session()
 
     def register(self, name, schedule, callback):
         try:
