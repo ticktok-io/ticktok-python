@@ -28,7 +28,7 @@ class TicktokClient:
     def register(self, name, schedule, callback):
         try:
             response = self._http_session.post(f'{self._url}/api/v1/clocks?access_token={self._token}',
-                                     json={'name': name, 'schedule': schedule})
+                                               json={'name': name, 'schedule': schedule})
             response.raise_for_status()
             self._callback = callback
             self._poll_url = response.json()['channel']['details']['url']
