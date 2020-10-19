@@ -1,5 +1,6 @@
-from ticktok.core import TicktokClient, ClockRegisterError
+from ticktok.core import Ticktok
+from ticktok.server import ClockRegisterError
 
 __all__ = [
-    'TicktokClient', ClockRegisterError
+    'Ticktok', ClockRegisterError
 ]

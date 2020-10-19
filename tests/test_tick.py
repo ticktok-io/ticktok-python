@@ -3,12 +3,12 @@ from contextlib import contextmanager
 
 import pytest
 
-from ticktok import TicktokClient
+from ticktok import Ticktok
 
 
 @pytest.fixture
 def client():
-    client = TicktokClient()
+    client = Ticktok()
     yield client
     client.unregister_all()
 

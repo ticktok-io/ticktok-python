@@ -1,12 +1,12 @@
 import pytest
 
 from tests import ticktok_server
-from ticktok import ClockRegisterError, TicktokClient
+from ticktok import ClockRegisterError, Ticktok
 
 
 @pytest.fixture
 def client():
-    client = TicktokClient()
+    client = Ticktok()
     yield client
     client.unregister_all()
 
@@ -24,6 +24,6 @@ def test_register_a_new_clock(client):
 
 def test_fail_on_invalid_connection_details():
     with pytest.raises(ClockRegisterError):
-        TicktokClient(url='http://unknown').register(name='kuku', schedule='every.1.seconds', callback=lambda: True)
+        Ticktok(url='http://unknown').register(name='kuku', schedule='every.1.seconds', callback=lambda: True)
     with pytest.raises(ClockRegisterError):
-        TicktokClient(token='invalid-token').register(name='kuku', schedule='every.1.seconds', callback=lambda: True)
+        Ticktok(token='invalid-token').register(name='kuku', schedule='every.1.seconds', callback=lambda: True)
