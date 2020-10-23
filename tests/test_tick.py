@@ -19,8 +19,8 @@ def test_invoke_callback_on_tick(client):
     two_sec_callback = MagicMock()
     client.register(name='test-clock', schedule='every.1.seconds', callback=one_sec_callback)
     client.register(name='test-clock', schedule='every.2.seconds', callback=two_sec_callback)
-    wait().at_most(3 * SECOND).until(lambda: one_sec_callback.call_count > 1)
-    wait().at_most(5 * SECOND).until(lambda: two_sec_callback.call_count > 1)
+    wait().at_most(4 * SECOND).until(lambda: one_sec_callback.call_count > 1)
+    wait().at_most(6 * SECOND).until(lambda: two_sec_callback.call_count > 1)
 
 
 def test_invoke_multiple_callbacks_in_parallel(client):
