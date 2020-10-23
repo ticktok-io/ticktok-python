@@ -13,13 +13,12 @@ class Ticktok:
     def __init__(self, url=DEFAULT_DOMAIN, token=DEFAULT_TOKEN):
         self._server = ServerSDK(url, token)
         self._is_running = False
-        self._poll_url = None
+        self._consumers = {}
         self._callback = None
 
     def register(self, name, schedule, callback):
         clock = self._server.register_clock(name, schedule)
-        self._callback = callback
-        self._poll_url = clock['channel']['details']['url']
+        self._consumers[clock['channel']['details']['url']] = callback
         self._start()
 
     def _start(self):
@@ -29,12 +28,12 @@ class Ticktok:
 
     def poll_ticks(self):
         while self._is_running:
-            if self._poll_url:
-                response = requests.get(self._poll_url)
+            consumers = self._consumers.copy()
+            for u, c in consumers.items():
+                response = requests.get(u)
                 if response.json():
-                    self._callback()
+                    c()
 
     def unregister_all(self):
         self._is_running = False
-        self._callback = None
-        self._poll_url = None
+        self._consumers.clear()

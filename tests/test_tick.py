@@ -1,7 +1,7 @@
-import threading
-from contextlib import contextmanager
+from unittest.mock import MagicMock
 
 import pytest
+from busypie import wait, SECOND
 
 from ticktok import Ticktok
 
@@ -14,18 +14,9 @@ def client():
 
 
 def test_invoke_callback_on_tick(client):
-    with verify_callback_invoked() as callback:
-        client.register(name='test-clock', schedule='every.1.seconds', callback=callback)
-
-
-@contextmanager
-def verify_callback_invoked():
-    e = threading.Event()
-
-    def callback():
-        e.set()
-
-    yield callback
-    e.clear()  # Make sure callback is called asynchronously
-    e.wait(timeout=10)
-    assert e.isSet()
+    one_sec_callback = MagicMock()
+    two_sec_callback = MagicMock()
+    client.register(name='test-clock', schedule='every.1.seconds', callback=one_sec_callback)
+    client.register(name='test-clock', schedule='every.2.seconds', callback=two_sec_callback)
+    wait().at_most(4 * SECOND).until(lambda: one_sec_callback.call_count > 1)
+    wait().at_most(5 * SECOND).until(lambda: two_sec_callback.call_count > 1)

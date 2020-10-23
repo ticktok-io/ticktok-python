@@ -21,6 +21,14 @@ tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)"
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six"]
 
 [[package]]
+name = "busypie"
+version = "0.4.4"
+description = "Easy and expressive busy-waiting for Python"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
 name = "certifi"
 version = "2020.6.20"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -256,7 +264,7 @@ testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "5c8743b3dcaba543d7af97e004e734e4d828a91a9b5f3e4c9edd7fe9c0c2aa0c"
+content-hash = "4cb77fde8d52797266e529d2f3e099e574444865ae6a0962bf2cc9f26ff531dc"
 
 [metadata.files]
 atomicwrites = [
@@ -266,6 +274,10 @@ atomicwrites = [
 attrs = [
     {file = "attrs-20.2.0-py2.py3-none-any.whl", hash = "sha256:fce7fc47dfc976152e82d53ff92fa0407700c21acd20886a13777a0d20e655dc"},
     {file = "attrs-20.2.0.tar.gz", hash = "sha256:26b54ddbbb9ee1d34d5d3668dd37d6cf74990ab23c828c2888dccdceee395594"},
+]
+busypie = [
+    {file = "busypie-0.4.4-py3-none-any.whl", hash = "sha256:fe9577468da135133e27b8e9f1cf5555f7a3f9899a72aa8bc66f92199b9e2e56"},
+    {file = "busypie-0.4.4.tar.gz", hash = "sha256:7d5c3e260a97952237085233db7957f0fa98ba6d8294cd1fa2d4bfbe9d0c979c"},
 ]
 certifi = [
     {file = "certifi-2020.6.20-py2.py3-none-any.whl", hash = "sha256:8fc0819f1f30ba15bdb34cceffb9ef04d99f420f68eb75d901e9560b8749fc41"},
