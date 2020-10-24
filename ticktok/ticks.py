@@ -21,10 +21,10 @@ class Ticker:
     def poll_ticks(self):
         while self._is_running:
             consumers = self._consumers.copy()
-            for u, c in consumers.items():
-                response = requests.get(u)
+            for url, callback in consumers.items():
+                response = requests.get(url)
                 if response.json():
-                    Thread(target=c).start()
+                    Thread(target=callback).start()
                 sleep(0.01)
 
     def unregister_all(self):
