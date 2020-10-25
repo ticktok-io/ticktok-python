@@ -24,7 +24,10 @@ jobs:
     - name: Lint with flake8
       run: invoke lint
     - name: Run ticktok.io
-      run: docker-compose up -d
+      timeout-minutes: 2
+      run: |
+        docker-compose up -d
+        .github/workflows/ticktok_health_check.sh
     - name: Test with pytest
       run: |
         invoke test
